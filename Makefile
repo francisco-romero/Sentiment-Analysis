@@ -1,8 +1,8 @@
 install:
-    pip install --upgrade pip && pip install -r requirements.txt
+	pip install --upgrade pip && pip install -r requirements.txt
 format:
-    find src -name '*.py' -exec black {} +
+	find src -name '*.py' -exec black {} +
 lint:
-    pylint --disable=R,C src/*.py
+	pylint --disable=R,C src/*.py
 test:
-    python -m pytest
+	python -m pytest
