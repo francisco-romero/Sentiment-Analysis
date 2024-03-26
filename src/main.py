@@ -42,7 +42,7 @@ def encoding_process(_content):
 
 my_input = "I regret that I was not able to see this movie before, it seems to have something that is worth"
 proc_input = my_input.lower()
-proc_input = re.sub("[^\w\s]+", "", proc_input)
+proc_input = re.sub(r"[^\w\s]+", "", proc_input)
 proc_input = proc_input.replace("<br />", "")
 proc_input = " ".join([word for word in proc_input.split() if word not in (stop)])
 tokens = encoding_process([proc_input])
@@ -54,7 +54,7 @@ model = BertForSequenceClassification.from_pretrained(
     output_hidden_states=False,
 )
 optimizer = AdamW(model.parameters(), lr=2e-5)
-checkpoint = torch.load("imdb_bert.pth", map_location=torch.device("cpu"))
+checkpoint = torch.load("/app/imdb_bert.pth", map_location=torch.device("cpu"))
 model.load_state_dict(checkpoint["model_state_dict"])
 optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
 model.eval()  # enabling the eval mode to test with new samples# .
