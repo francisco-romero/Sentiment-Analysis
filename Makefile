@@ -3,7 +3,6 @@ install:
 format:
 	find src -name '*.py' -exec black {} +
 lint:
-	pylint --disable=R,C src/*.py \
-	return 0
+	pylint --disable=R,C src/*.py
 test:
-	python -m pytest
+	python -m pytest -vv
